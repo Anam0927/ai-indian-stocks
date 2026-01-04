@@ -18,7 +18,8 @@
     "noEmit": true,
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "ignoreDeprecations": "6.0"
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }

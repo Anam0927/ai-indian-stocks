@@ -1,23 +1,20 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from '@tanstack/react-router'
+import { CandlestickChartIcon } from 'lucide-react'
+
+import { ThemeSwitcher } from './theme-switcher'
 
 export default function Header() {
-  const links = [{ to: "/", label: "Home" }] as const;
-
   return (
     <div>
-      <div className="flex flex-row items-center justify-between px-2 py-1">
-        <nav className="flex gap-4 text-lg">
-          {links.map(({ to, label }) => {
-            return (
-              <Link key={to} to={to}>
-                {label}
-              </Link>
-            );
-          })}
-        </nav>
-        <div className="flex items-center gap-2"></div>
+      <div className="flex flex-row items-center justify-between px-6 py-2">
+        <Link to="/">
+          <CandlestickChartIcon className="size-8" />
+        </Link>
+        <div className="flex items-center gap-2">
+          <ThemeSwitcher />
+        </div>
       </div>
       <hr />
     </div>
-  );
+  )
 }
