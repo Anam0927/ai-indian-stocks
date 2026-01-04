@@ -1,11 +1,11 @@
 import type { LucideIcon } from 'lucide-react'
 
-import { ClientOnly } from '@tanstack/react-router'
 import { Monitor, Moon, Sun } from 'lucide-react'
 import { motion } from 'motion/react'
 import { useEffect, useState } from 'react'
 
 import { useIsMatchMedia } from '@/hooks/use-is-match-media'
+import { useLocalStorage } from '@/hooks/use-local-storage'
 import { cn } from '@/lib/utils'
 
 type Theme = 'light' | 'dark' | 'system'
@@ -28,16 +28,19 @@ const themes: { key: Theme; icon: LucideIcon; label: string }[] = [
   },
 ]
 
-function ThemeSwitcherLogic() {
+export function ThemeSwitcher() {
   const isSystemDark = useIsMatchMedia('(prefers-color-scheme: dark)')
 
-  const savedTheme = localStorage.getItem('anaam_theme') as Theme | null
+  const [savedTheme, setSavedTheme] = useLocalStorage<Theme | null>(
+    'anaam_theme',
+    null,
+  )
 
   const [theme, setTheme] = useState<Theme>(savedTheme ?? 'system')
 
   const handleThemeClick = (newTheme: Theme) => {
     setTheme(newTheme)
-    localStorage.setItem('anaam_theme', newTheme)
+    setSavedTheme(newTheme)
   }
 
   useEffect(() => {
@@ -90,13 +93,5 @@ function ThemeSwitcherLogic() {
         )
       })}
     </div>
-  )
-}
-
-export function ThemeSwitcher() {
-  return (
-    <ClientOnly>
-      <ThemeSwitcherLogic />
-    </ClientOnly>
   )
 }
