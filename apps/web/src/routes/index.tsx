@@ -1,34 +1,43 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { BotIcon, CandlestickChartIcon } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { useAuth } from '@/contexts/auth'
+import { getKiteLoginUrl } from '@/lib/utils'
 
 export const Route = createFileRoute('/')({
   component: HomeComponent,
 })
 
-const TITLE_TEXT = `
- ██████╗ ███████╗████████╗████████╗███████╗██████╗
- ██╔══██╗██╔════╝╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
- ██████╔╝█████╗     ██║      ██║   █████╗  ██████╔╝
- ██╔══██╗██╔══╝     ██║      ██║   ██╔══╝  ██╔══██╗
- ██████╔╝███████╗   ██║      ██║   ███████╗██║  ██║
- ╚═════╝ ╚══════╝   ╚═╝      ╚═╝   ╚══════╝╚═╝  ╚═╝
-
- ████████╗    ███████╗████████╗ █████╗  ██████╗██╗  ██╗
- ╚══██╔══╝    ██╔════╝╚══██╔══╝██╔══██╗██╔════╝██║ ██╔╝
-    ██║       ███████╗   ██║   ███████║██║     █████╔╝
-    ██║       ╚════██║   ██║   ██╔══██║██║     ██╔═██╗
-    ██║       ███████║   ██║   ██║  ██║╚██████╗██║  ██╗
-    ╚═╝       ╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
- `
-
 function HomeComponent() {
+  const { isAuthenticated } = useAuth()
+
   return (
-    <div className="container mx-auto max-w-3xl px-4 py-2">
-      <pre className="overflow-x-auto font-mono text-sm">{TITLE_TEXT}</pre>
-      <div className="grid gap-6">
-        <section className="rounded-lg border p-4">
-          <h2 className="mb-2 font-medium">API Status</h2>
+    <>
+      <section>
+        <h1
+          className={`
+            container mx-auto flex items-center justify-center gap-3 px-6 py-20
+            text-6xl leading-snug font-medium text-balance
+            [&_svg]:mx-2 [&_svg]:text-primary
+            [&>svg]:inline-block [&>svg]:size-12
+          `}
+        >
+          <BotIcon /> AI Stock <CandlestickChartIcon /> Advisor
+        </h1>
+      </section>
+
+      {!isAuthenticated && (
+        <section className="container mx-auto my-20 px-6 text-center">
+          <Button
+            size="2xl"
+            render={<a href={getKiteLoginUrl()} />}
+            nativeButton={false}
+          >
+            Login to Get Started
+          </Button>
         </section>
-      </div>
-    </div>
+      )}
+    </>
   )
 }

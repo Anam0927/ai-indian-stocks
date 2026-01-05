@@ -14,6 +14,7 @@ export function getBaseConfig(options = undefined) {
         newlinesBetween: 'always',
       },
     ],
+    'node/prefer-global/process': 'off',
   })
 }
 
