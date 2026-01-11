@@ -1,6 +1,6 @@
 # AI Stocks Summarizer
 
-A simple AI app that summarizes the performance of stocks.
+A simple AI app that summarizes the performance of stocks. Uses Kite API to get stocks data
 
 > ***Note: For Indian Stocks only***
 

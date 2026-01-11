@@ -10,7 +10,7 @@ export const Route = createFileRoute('/_authenticated')({
     if (!user) {
       throw redirect({
         href: getKiteLoginUrl(
-          `redirect_uri=${encodeURIComponent(location.pathname + location.searchStr)}`,
+          `redirect_to=${encodeURIComponent(location.pathname + location.searchStr)}`,
         ),
       })
     }
