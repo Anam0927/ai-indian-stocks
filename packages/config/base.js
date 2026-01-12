@@ -6,7 +6,7 @@ import prettierConflicts from 'eslint-config-prettier'
  */
 export function getBaseConfig(options = undefined) {
   return antfu(options, prettierConflicts, {
-    ignores: ['**/*.gen.ts'],
+    ignores: ['**/*.gen.ts', '**/opencode/**'],
   }).overrideRules({
     'perfectionist/sort-imports': [
       'error',

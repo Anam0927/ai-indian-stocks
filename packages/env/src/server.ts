@@ -8,6 +8,7 @@ export const serverEnv = createEnv({
     KITE_API_CLIENT_ID: z.string().regex(/^[A-Z]{2}\d{4}$/),
     KITE_API_KEY: z.string().nonempty(),
     SESSION_SECRET: z.string().min(32),
+    OPENAI_API_KEY: z.string().nonempty(),
   },
   clientPrefix: 'VITE_',
   client: {},
