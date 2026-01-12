@@ -104,7 +104,7 @@ export const getHistoricalData = createServerFn({ method: 'GET' })
     } catch (error) {
       if (error instanceof HTTPError) {
         const errorStatus = error.response.status
-        if (errorStatus === 401) {
+        if (errorStatus === 401 || errorStatus === 403) {
           await logoutFn()
           throw new Error('Session expired. Please log in again.')
         }
