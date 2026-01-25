@@ -5,7 +5,9 @@
   "scripts": {
     "build": "vite build",
     "serve": "vite preview",
-    "dev": "vite dev"
+    "dev": "vite dev",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
